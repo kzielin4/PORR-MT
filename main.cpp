@@ -6,9 +6,8 @@
 
 
 
-void* print_message(void*) {
-    std::cout << " ###### Launched by thread #########" << std::endl;
-    return NULL;
+void print_message(int i) {
+    std::cout << "lolL :"<< i << std::endl;
 }
 
 int main() {
@@ -16,12 +15,20 @@ int main() {
     using boost::multiprecision::cpp_dec_float_50;
     int startTime = clock();
 
-
-    pthread_t t1;
-
-   // for(int i= 0; i <= 100; i++) {
-   //     pthread_create(&t1, NULL, &print_message, NULL);
-   // }
+    int i =2;
+    int i2=20;
+    std::thread t([&]() {
+        while (true)
+        {
+            std::cout << i << std::endl;
+        }
+    });
+    std::thread t2([&]() {
+        while (true)
+        {
+            std::cout << "12213" << std::endl;
+        }
+    });
 
     int intervalA = -12;
     int intervalB = 20;
@@ -37,7 +44,7 @@ int main() {
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
     Solver *solver = new Solver(*nowy, derivative, function);
    // solver->test();
-    solver->test2();
+    //solver->test2();
 
 
     int duration = clock() - startTime;
@@ -45,7 +52,7 @@ int main() {
     std::cout << "Duration: " << duration << "[ms] " << std::endl;
     std::cout << "---------------------------" << std::endl;
 
-    pthread_join(t1, NULL);
     return 0;
+
 }
 
