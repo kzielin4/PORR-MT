@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/untitled.dir/main.cpp.o CMakeFiles/untitled.dir/src/derivative.cpp.o CMakeFiles/untitled.dir/src/Interval.cpp.o CMakeFiles/untitled.dir/src/Solver.cpp.o  -o untitled 

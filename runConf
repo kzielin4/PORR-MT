@@ -1,0 +1,30 @@
+#####2#####
+int intervalA = -5;
+int intervalB = 20;
+double (*derivative)(double)= &dfun2;
+double (*function)(double)=&fun2;
+double L = 20;
+####3######
+int intervalA = -20;
+int intervalB = 20;
+double (*derivative)(double)= &dfun3;
+double (*function)(double)=&fun3;
+double L = 1.75;
+###4######
+    int intervalA = -10;
+    int intervalB = 15;
+    double (*derivative)(double)= &dfun4;
+    double (*function)(double)=&fun4;
+    double L = 0.25162;
+###5######
+    int intervalA = -12;
+    int intervalB = 20;
+    double (*derivative)(double)= &dfun5;
+    double (*function)(double)=&fun5;
+    double L = -1.02;
+###1#####
+    int intervalA = -12.9;
+    int intervalB = 13;
+    double (*derivative)(double)= &dfun1;
+    double (*function)(double)=&fun1;
+    double L = 0.496;
