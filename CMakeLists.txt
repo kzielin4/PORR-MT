@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(untitled)
 
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 set(SOURCE_FILES main.cpp src/derivative.h src/derivative.cpp src/Interval.cpp src/Interval.h src/Solver.cpp src/Solver.h)
 

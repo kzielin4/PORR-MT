@@ -2,12 +2,22 @@
 #include <boost/math/constants/constants.hpp>
 #include "src/Interval.h"
 #include "src/Solver.h"
+#include <pthread.h>
 
+
+void* print_message(void*) {
+    std::cout << "Launched by thread" << std::endl;
+    return NULL;
+}
 
 int main() {
     using boost::math::constants::pi;
     using boost::multiprecision::cpp_dec_float_50;
     int startTime = clock();
+
+
+    pthread_t t1;
+    pthread_create(&t1, NULL, &print_message, NULL);
 
     int intervalA = -12;
     int intervalB = 20;
@@ -23,12 +33,13 @@ int main() {
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
     Solver *solver = new Solver(*nowy, derivative, function);
     solver->test();
-    boost::th;
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
-    std::cout << "Czas trwania: " << duration << "[ms] " << std::endl;
+    std::cout << "Duration: " << duration << "[ms] " << std::endl;
     std::cout << "---------------------------" << std::endl;
+
+    //pthread_join(t, NULL);
     return 0;
 }
 
