@@ -17,7 +17,10 @@ int main() {
 
 
     pthread_t t1;
-    pthread_create(&t1, NULL, &print_message, NULL);
+
+    for(int i= 0; i <= 100; i++) {
+        pthread_create(&t1, NULL, &print_message, NULL);
+    }
 
     int intervalA = -12;
     int intervalB = 20;
@@ -34,12 +37,14 @@ int main() {
     Solver *solver = new Solver(*nowy, derivative, function);
     solver->test();
 
+    solver->test2();
+
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
     std::cout << "Duration: " << duration << "[ms] " << std::endl;
     std::cout << "---------------------------" << std::endl;
 
-    //pthread_join(t, NULL);
+    pthread_join(t1, NULL);
     return 0;
 }
 

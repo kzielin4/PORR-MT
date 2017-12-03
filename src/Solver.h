@@ -42,9 +42,13 @@ public:
     void addIntervalToList(const Interval &interval) {
         intervalList.push_back(interval);
     }
+    void test2(){
+        pthread_t t2;
+        pthread_create(&t2, NULL, &test, NULL);
+    }
 
 public:
-     void test() {
+    void* test(void*) {
         Interval *minInterval;
         Interval *minX;
         std::list<Interval> minIntervalList;
