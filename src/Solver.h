@@ -13,8 +13,16 @@
 #include <float.h>
 #include "Interval.h"
 #include <tuple>
+#include <thread>
 
 class Solver {
+
+    void print_message() {
+        for(int i =0; i<1000; i++) {
+            std::cout << " ###### Launched by thread #########" << std::endl;
+        }
+        return;
+    }
 
     std::list<Interval> intervalList;
     double minValue;
@@ -43,12 +51,14 @@ public:
         intervalList.push_back(interval);
     }
     void test2(){
-        pthread_t t2;
-        pthread_create(&t2, NULL, &test, NULL);
+        std::thread t1(&Solver::test, this);
+        std::thread t2(&Solver::print_message, this);
+        t1.join();
+        t2.join();
     }
 
 public:
-    void* test(void*) {
+    void test() {
         Interval *minInterval;
         Interval *minX;
         std::list<Interval> minIntervalList;

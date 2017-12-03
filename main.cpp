@@ -5,6 +5,7 @@
 #include <pthread.h>
 
 
+
 void* print_message(void*) {
     std::cout << " ###### Launched by thread #########" << std::endl;
     return NULL;
@@ -18,9 +19,9 @@ int main() {
 
     pthread_t t1;
 
-    for(int i= 0; i <= 100; i++) {
-        pthread_create(&t1, NULL, &print_message, NULL);
-    }
+   // for(int i= 0; i <= 100; i++) {
+   //     pthread_create(&t1, NULL, &print_message, NULL);
+   // }
 
     int intervalA = -12;
     int intervalB = 20;
@@ -35,9 +36,9 @@ int main() {
     std::cout << "---------------------------" << std::endl;
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
     Solver *solver = new Solver(*nowy, derivative, function);
-    solver->test();
-
+   // solver->test();
     solver->test2();
+
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
