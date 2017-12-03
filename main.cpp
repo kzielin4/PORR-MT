@@ -2,6 +2,7 @@
 #include <boost/math/constants/constants.hpp>
 #include "src/Interval.h"
 #include "src/Solver.h"
+#include <pthread.h>
 
 
 int main() {
@@ -22,8 +23,10 @@ int main() {
     std::cout << "---------------------------" << std::endl;
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
     Solver *solver = new Solver(*nowy, derivative, function);
-    solver->test();
-    boost::th;
+    pthread_t t1;
+    //solver->test2();
+    pthread_create(&t1, NULL, solver->test, NULL);
+    //solver->test();
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
