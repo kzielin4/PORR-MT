@@ -6,7 +6,7 @@
 
 
 void* print_message(void*) {
-    std::cout << "Launched by thread" << std::endl;
+    std::cout << " ###### Launched by thread #########" << std::endl;
     return NULL;
 }
 

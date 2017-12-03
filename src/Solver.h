@@ -42,13 +42,9 @@ public:
     void addIntervalToList(const Interval &interval) {
         intervalList.push_back(interval);
     }
-    void test2(){
-        pthread_t t1;
-        pthread_create(&t1, NULL, &test, NULL);
-    }
 
 public:
-     void *test(void *) {
+     void test() {
         Interval *minInterval;
         Interval *minX;
         std::list<Interval> minIntervalList;
@@ -79,7 +75,7 @@ public:
                                     for (it = minXList.begin(); it != minXList.end(); ++it) {
                                         std::cout << "X: " << it->getSmallesValue() << "   Value: " << minValue << std::endl;
                                     }
-                                    return NULL;
+                                    return;
                                 }
                             }
                             else{
@@ -142,7 +138,7 @@ public:
         for (it = minXList.begin(); it != minXList.end(); ++it) {
             std::cout << "X: " << it->getSmallesValue() << "   Value: " << minValue << std::endl;
         }
-         return NULL;
+         return;
      };
 };
 
