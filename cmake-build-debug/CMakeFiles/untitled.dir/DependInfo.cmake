@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/kamil/CLionProjects/PORR/main.cpp" "/home/kamil/CLionProjects/PORR/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.o"
-  "/home/kamil/CLionProjects/PORR/src/Interval.cpp" "/home/kamil/CLionProjects/PORR/cmake-build-debug/CMakeFiles/untitled.dir/src/Interval.cpp.o"
-  "/home/kamil/CLionProjects/PORR/src/Solver.cpp" "/home/kamil/CLionProjects/PORR/cmake-build-debug/CMakeFiles/untitled.dir/src/Solver.cpp.o"
-  "/home/kamil/CLionProjects/PORR/src/derivative.cpp" "/home/kamil/CLionProjects/PORR/cmake-build-debug/CMakeFiles/untitled.dir/src/derivative.cpp.o"
+  "/home/kamil/CLionProjects/PORR-MT/main.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.o"
+  "/home/kamil/CLionProjects/PORR-MT/src/Interval.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/Interval.cpp.o"
+  "/home/kamil/CLionProjects/PORR-MT/src/Solver.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/Solver.cpp.o"
+  "/home/kamil/CLionProjects/PORR-MT/src/derivative.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/derivative.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

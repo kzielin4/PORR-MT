@@ -20,6 +20,7 @@ class Solver {
     double minValue;
     double startA;
     double startB;
+    double minx = DBL_MAX;
 
     double (*derivative)(double);
 
@@ -34,6 +35,7 @@ public:
         startB = it->getBiggestValue();
         derivative = derivative1;
         function = function2;
+        minx = DBL_MAX;
 
     };
 public:
@@ -49,7 +51,6 @@ public:
         std::list<Interval> minXList;
         std::list<Interval>::iterator it = intervalList.begin();
         double x, result;
-        double minx = DBL_MAX;
         int i;
         double L = it->getL();
         bool isFirsLoop = false;

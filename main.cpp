@@ -23,6 +23,7 @@ int main() {
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
     Solver *solver = new Solver(*nowy, derivative, function);
     solver->test();
+    boost::th;
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
