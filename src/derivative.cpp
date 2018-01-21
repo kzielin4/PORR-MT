@@ -40,7 +40,7 @@ double fun5(double x) {
 double dfun1(double a) {
     derivative(a, 1.0,
                [](const double &x) -> double {
-                   return (x == 0) ? 0 : sin(x) / x;
+                   return (x == 0) ? 1 : sin(x) / x;
                }
     );
 }

@@ -2,39 +2,19 @@
 #include <boost/math/constants/constants.hpp>
 #include "src/Interval.h"
 #include "src/Solver.h"
-#include <pthread.h>
 
-
-
-void print_message(int i) {
-    std::cout << "lolL :"<< i << std::endl;
-}
+using namespace std;
 
 int main() {
     using boost::math::constants::pi;
     using boost::multiprecision::cpp_dec_float_50;
     int startTime = clock();
 
-    int i =2;
-    int i2=20;
-    std::thread t([&]() {
-        while (true)
-        {
-            std::cout << i << std::endl;
-        }
-    });
-    std::thread t2([&]() {
-        while (true)
-        {
-            std::cout << "12213" << std::endl;
-        }
-    });
-
-    int intervalA = -12;
-    int intervalB = 20;
-    double (*derivative)(double)= &dfun5;
-    double (*function)(double)=&fun5;
-    double L = -1.02;
+    int intervalA = -13;
+    int intervalB = 13;
+    double (*derivative)(double)= &dfun1;
+    double (*function)(double)=&fun1;
+    double L = 1000;
     std::cout << "---------------------------" << std::endl;
     std::cout << "Data " << std::endl;
     std::cout << "Min x: " << intervalA << std::endl;
@@ -42,17 +22,13 @@ int main() {
     std::cout << "L: " << L << std::endl;
     std::cout << "---------------------------" << std::endl;
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
-    Solver *solver = new Solver(*nowy, derivative, function);
-   // solver->test();
-    //solver->test2();
-
+    Solver *solver = new Solver(*nowy, derivative, function,L);
+    solver->runAlgorithm();
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
-    std::cout << "Duration: " << duration << "[ms] " << std::endl;
+    std::cout << "Czas trwania: " << duration << "[ms] " << std::endl;
     std::cout << "---------------------------" << std::endl;
-
     return 0;
-
 }
 

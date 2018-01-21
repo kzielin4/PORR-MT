@@ -51,6 +51,12 @@ Interval.h
 /home/kamil/CLionProjects/PORR-MT/src/Interval.h
 tuple
 -
+atomic
+-
+mutex
+-
+thread
+-
 
 /home/kamil/CLionProjects/PORR-MT/src/derivative.cpp
 boost/multiprecision/cpp_dec_float.hpp
