@@ -11,6 +11,7 @@
 #include <algorithm>
 
 class Interval {
+public:
     double a;
     double b;
     double funValA;
@@ -31,19 +32,27 @@ public:
         funValB = function(b);
     }
 
+    Interval(double a, double b) {
+        this->a = a;
+        this->b = b;
+    }
+
 public:
-    std::tuple<double,double> countIntervalCrossPoint() {
+    std::tuple<double,double,double> countIntervalCrossPoint() {
             isDericativeExist = true;
         double result;
             result = (funValA + L * a - funValB + L * b) / ( 2* L);
+            //policz jedna wybrana strone
+            double val = funValA-L*(result-a);
             if(result<a){
                 result = a+0.01;
             }
             else if(result>b){
                 result = b -0.01;
             }
-            //std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
-            return std::make_tuple(result, function(result));
+            double resultVal = function(result);
+            std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
+            return std::make_tuple(result, resultVal ,val);
 
     }
     double getH(double x){
@@ -52,11 +61,11 @@ public:
 
 public:
     double getSmallesValue() {
-        return (b > a) ? a : b;
+        return (b >= a) ? a : b;
     }
 
     double getBiggestValue() {
-        return (b > a) ? b : a;
+        return (b >= a) ? b : a;
     }
 
     double getFunValA() const {
