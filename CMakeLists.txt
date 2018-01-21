@@ -11,3 +11,5 @@ IF (Boost_FOUND)
     add_executable(untitled ${SOURCE_FILES} src/derivative.h src/derivative.cpp src/Interval.cpp src/Interval.h src/Solver.cpp src/Solver.h)
     target_link_libraries (untitled ${Boost_LIBRARIES})
 endif()
+
+include_directories(/usr/include/mpi/)

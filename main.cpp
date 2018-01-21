@@ -2,12 +2,17 @@
 #include <boost/math/constants/constants.hpp>
 #include "src/Interval.h"
 #include "src/Solver.h"
+#include <mpi/mpi.h>
 
 using namespace std;
 
 int main() {
     using boost::math::constants::pi;
     using boost::multiprecision::cpp_dec_float_50;
+
+    // Initialize the MPI environment
+    MPI_Init(NULL, NULL);
+
     int startTime = clock();
 
     int intervalA = -13;
@@ -29,6 +34,10 @@ int main() {
     std::cout << "---------------------------" << std::endl;
     std::cout << "Czas trwania: " << duration << "[ms] " << std::endl;
     std::cout << "---------------------------" << std::endl;
+
+    // Finalize the MPI environment.
+    MPI_Finalize();
+
     return 0;
 }
 
