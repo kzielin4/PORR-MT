@@ -14,13 +14,10 @@
 #include "Interval.h"
 #include <tuple>
 #include <atomic>
-#include <mutex>
-#include <thread>
 
 using namespace std;
 
 class Solver {
-    std::mutex mutex;
     std::list<Interval> intervalList;
     std::list<Interval>::iterator itGlobal = intervalList.begin();
     double minValue = 999999999999;
@@ -40,44 +37,31 @@ public:
     };
 public:
     void addIntervalToList(const Interval &interval) {
-        mutex.lock();
         intervalList.push_back(interval);
-        mutex.unlock();
     }
 
     void removeIntervalFromList() {
-        mutex.lock();
         intervalList.pop_front();
         --howMuchUp;
-        mutex.unlock();
     }
 
     list<Interval>::iterator getBeginIterator(){
-        mutex.lock();
+        
         std::list<Interval>::iterator it = intervalList.begin();
-        mutex.unlock();
         return it;
     }
 
     tuple<list<Interval>::iterator,double> increaseAndGetIterator(){
-        mutex.lock();
+        
         bool isNotOutOfMemory;
-//        isNotOutOfMemory = it != intervalList.end();
-//        for (int i =0 ;i<howMuchUp+1;++i) {
-//            isNotOutOfMemory = it != intervalList.end();
-//           if (!isNotOutOfMemory) {
-//                ++it;
-//           }
-//       }
-//        ++howMuchUp;
         isNotOutOfMemory =  intervalList.size()!=0;
         std::list<Interval>::iterator it = intervalList.begin();
         if(isNotOutOfMemory) {
             intervalList.pop_front();
-            mutex.unlock();
+            
             return std::make_tuple(it, isNotOutOfMemory);
         }
-        mutex.unlock();
+        
         return std::make_tuple(it, isNotOutOfMemory);
     }
 
@@ -86,9 +70,8 @@ public:
     }
 
     bool isEndOfList(){
-        mutex.lock();
         int size = intervalList.size();
-        mutex.unlock();
+        
         return size==0;
     }
 
@@ -106,70 +89,55 @@ public:
             result = b -0.01;
         }
         double resultVal = function(result);
-        std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
+    // std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
         return std::make_tuple(result, resultVal ,val);
 
     }
 
 public:
 
-    void runAlgorithm(){
-       // test();
-        thread t1(&Solver::test, this);
-        thread t2(&Solver::test, this);
-        thread t3(&Solver::test, this);
-        thread t4(&Solver::test, this);
-        thread t5(&Solver::test, this);
-        thread t6(&Solver::test, this);
-        thread t7(&Solver::test, this);
-        thread t8(&Solver::test, this);
-        thread t9(&Solver::test, this);
-        thread t0(&Solver::test, this);
-        t1.join();
-        t2.join();
-        t3.join();
-        t4.join();
-        t5.join();
-        t6.join();
-        t7.join();
-        t8.join();
-        t9.join();
-        t0.join();
+    void runAlgorithm(char* processor_name, int world_rank, int world_size){
+        // Print off a hello world message
+        printf("Hello world from processor %s, rank %d"
+                       " out of %d processors\n",
+               processor_name, world_rank, world_size);
+
+        test();
     }
     bool getisNOTFound(){
-        mutex.lock();
+        
         bool isNotFound = isNOTFound;
-        mutex.unlock();
+        
         return isNotFound;
     }
 
     void setIsNOTFoundFalse(){
-        mutex.lock();
+        
         isNOTFound = false;
-        mutex.unlock();
+        
     }
 
     double getminValue(){
-        mutex.lock();
+        
         double minValueTmp = minValue;
-        mutex.unlock();
+        
         return minValueTmp;
     }
 
     void setminValueXY(double minValY, double minValX){
-        mutex.lock();
+        
         minValue = minValY;
         minx = minValX;
-        mutex.unlock();
+        
     }
 
     void printEnd(int i){
         cout<<"Koniec"<< std::endl;
         std::cout << "Solver:" << std::endl;
-        mutex.lock();
+        
         std::cout << "X: " << minx << "   Y: " << minValue << std::endl;
         std::cout << "Ilosc:" << i<<std::endl;
-        mutex.unlock();
+        
         return;
     }
 

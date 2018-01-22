@@ -13,13 +13,27 @@ int main() {
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
 
+    // Get the number of processes
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+    // Get the rank of the process
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
+    // Get the name of the processor
+    char processor_name[MPI_MAX_PROCESSOR_NAME];
+    int name_len;
+    MPI_Get_processor_name(processor_name, &name_len);
+
+
     int startTime = clock();
 
-    int intervalA = -13;
-    int intervalB = 13;
-    double (*derivative)(double)= &dfun1;
-    double (*function)(double)=&fun1;
-    double L = 1000;
+    int intervalA = -5;
+    int intervalB = 20;
+    double (*derivative)(double)= &dfun2;
+    double (*function)(double)=&fun2;
+    double L = 20;
     std::cout << "---------------------------" << std::endl;
     std::cout << "Data " << std::endl;
     std::cout << "Min x: " << intervalA << std::endl;
@@ -28,12 +42,15 @@ int main() {
     std::cout << "---------------------------" << std::endl;
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
     Solver *solver = new Solver(*nowy, derivative, function,L);
-    solver->runAlgorithm();
+    solver->runAlgorithm(processor_name, world_rank, world_size);
+
+    MPI_Barrier(MPI_COMM_WORLD);
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
     std::cout << "Czas trwania: " << duration << "[ms] " << std::endl;
     std::cout << "---------------------------" << std::endl;
+
 
     // Finalize the MPI environment.
     MPI_Finalize();
