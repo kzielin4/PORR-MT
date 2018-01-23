@@ -40,11 +40,22 @@ int main() {
     std::cout << "Max x: " << intervalB << std::endl;
     std::cout << "L: " << L << std::endl;
     std::cout << "---------------------------" << std::endl;
-    Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
-    Solver *solver = new Solver(*nowy, derivative, function,L);
-    solver->runAlgorithm(processor_name, world_rank, world_size);
 
-    MPI_Barrier(MPI_COMM_WORLD);
+    int middlePoint = (std::abs(intervalA) + std::abs(intervalB))/2;
+
+    if (world_rank == 0) {
+        Interval *nowy = new Interval(intervalA, middlePoint, derivative, function, L);
+        Solver *solver = new Solver(*nowy, derivative, function,L);
+
+        solver->runAlgorithm(processor_name, world_rank, world_size);
+    }
+    else if (world_rank == 1){
+        Interval *nowy = new Interval(middlePoint, intervalB, derivative, function, L);
+        Solver *solver = new Solver(*nowy, derivative, function,L);
+
+        solver->runAlgorithm(processor_name, world_rank, world_size);
+    }
+
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;

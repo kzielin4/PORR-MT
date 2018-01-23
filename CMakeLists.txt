@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.3)
-project(hellompi)
+project(mpiMain)
 
 set(CMAKE_CXX_STANDARD 11)
 #SET(CMAKE_CXX_FLAGS -pthread)
@@ -11,7 +11,7 @@ SET(CMAKE_C_COMPILER mpicc)
 SET(CMAKE_CXX_COMPILER mpicxx)
 
 set(SOURCE_FILES main.cpp src/derivative.h src/derivative.cpp src/Interval.cpp src/Interval.h src/Solver.cpp src/Solver.h)
-add_executable(hellompi ${SOURCE_FILES})
+add_executable(mpiMain ${SOURCE_FILES})
 
 find_package(Boost)
 IF (Boost_FOUND)

@@ -14,6 +14,9 @@
 #include "Interval.h"
 #include <tuple>
 #include <atomic>
+#include <mpi/mpi.h>
+#include <sstream>
+
 
 using namespace std;
 
@@ -102,7 +105,7 @@ public:
                        " out of %d processors\n",
                processor_name, world_rank, world_size);
 
-        test();
+        test(world_rank);
     }
     bool getisNOTFound(){
         
@@ -141,8 +144,7 @@ public:
         return;
     }
 
-    void test() {
-        std::list<Interval> minIntervalList;
+    void test(int world_rank) {
         double x, result;
         std::list<Interval>::iterator it ;
         bool outNotOfMemory = true;
@@ -154,7 +156,6 @@ public:
             return;
         }
         while (getisNOTFound()){
-            //std::tie(x, result, aprox) = it->countIntervalCrossPoint();
             std::tie(x, result, aprox) = countIntervalCrossPoint(it->a,it->b,L);
             if (aprox >= getminValue() ||
                 (result <= getminValue() && std::abs(it->a - it->b) < 0.01)) {
@@ -166,32 +167,86 @@ public:
                     printEnd(i);
                     return;
                 }
-                //removeIntervalFromList();
             } else {
                 if (result < getminValue()) {
                     setminValueXY(result,x);
                 }
                 Interval *firstPoint = new Interval(it->a, x, derivative, function, L);
-                //Interval *firstPoint = new Interval(it->getSmallesValue(), x);
                 Interval *secondPoint = new Interval(x, it->b, derivative, function, L);
-                //Interval *secondPoint = new Interval(x, it->getBiggestValue());
                 addIntervalToList(*firstPoint);
                 addIntervalToList(*secondPoint);
+
+//                bool isNotF = getisNOTFound();
+//
+//                if (world_rank == 0) {
+//                    MPI_Send(&it->a, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+//                    MPI_Send(&it->b, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+//                    MPI_Send(&x, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+//                    MPI_Send(&minValue, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+//                    MPI_Send(&isNotF, 1, MPI_LOGICAL, 1, 0, MPI_COMM_WORLD);
+//                }
+//                else if(world_rank == 1 ) {
+//                    double new_a;
+//                    double new_b;
+//                    double new_x;
+//                    double new_y;
+//                    bool new_isNFound;
+//
+//                    MPI_Recv(&new_a, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+//                    MPI_Recv(&new_b, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+//                    MPI_Recv(&new_x, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+//                    MPI_Recv(&new_y, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+//                    MPI_Recv(&new_isNFound, 1, MPI_COMPLEX, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+//
+//                    std::cout << "Process 1 received: new_a: " << new_a  << " ,new_b" << new_b <<  " ,new_x" << new_x << " ,new_isNFound" << new_isNFound << " from process 0\n";
+//
+//                    if(new_y < minValue) {
+//                        setminValueXY(new_y, new_x);
+//
+//                        Interval *firstPoint = new Interval(new_a, new_x, derivative, function, L);
+//                        Interval *secondPoint = new Interval(new_x, new_b, derivative, function, L);
+//                        addIntervalToList(*firstPoint);
+//                        addIntervalToList(*secondPoint);
+//                        isNOTFound = new_isNFound;
+//                    }
+//                }
+
                 std::tie(it, outNotOfMemory)= increaseAndGetIterator();
                 if(!outNotOfMemory){
                     printEnd(i);
                     return;
                 }
-                //removeIntervalFromList();
             }
             ++i;
         }
+
+        if (world_rank == 0) {
+            MPI_Send(&x, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+            MPI_Send(&minValue, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+        }
+        else if(world_rank == 1 ) {
+            double new_x;
+            double new_y;
+
+            MPI_Recv(&new_x, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(&new_y, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+            if(new_y < minValue){
+                minValue = new_y;
+                x = new_x;
+            }
+        }
+
         std::cout << "Solver:" << std::endl;
         std::cout << "X: " << minx << "   Y: " << minValue << std::endl;
         std::cout << "Ilosc:" << i<<std::endl;
 
     };
 
+    inline const char * const BoolToString(bool b)
+    {
+        return b ? "true" : "false";
+    }
 };
 
 
