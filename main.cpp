@@ -10,6 +10,9 @@ int main() {
     using boost::math::constants::pi;
     using boost::multiprecision::cpp_dec_float_50;
 
+    int howManyThreads = 4;
+
+
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
 
@@ -41,21 +44,50 @@ int main() {
     std::cout << "L: " << L << std::endl;
     std::cout << "---------------------------" << std::endl;
 
-    int middlePoint = (std::abs(intervalA) + std::abs(intervalB))/2;
+
+    int step = (std::abs(intervalA) + std::abs(intervalB))/howManyThreads;
+
+    /*for(int i=0; i < howManyThreads; howManyThreads++ ) {
+        if (i == howManyThreads - 1) {
+            Interval *nowy = new Interval(intervalA + i * step, intervalB, derivative, function, L);
+            Solver *solver = new Solver(*nowy, derivative, function, L);
+
+            solver->runAlgorithm(processor_name, world_rank, world_size);
+            break;
+        }
+        if (world_rank == i) {
+            Interval *nowy = new Interval(intervalA + i * step, intervalA + (i + 1) * step, derivative, function, L);
+            Solver *solver = new Solver(*nowy, derivative, function, L);
+
+            solver->runAlgorithm(processor_name, world_rank, world_size);
+        }
+    }*/
+
 
     if (world_rank == 0) {
-        Interval *nowy = new Interval(intervalA, middlePoint, derivative, function, L);
-        Solver *solver = new Solver(*nowy, derivative, function,L);
+        Interval *nowy = new Interval(intervalA, intervalA + step, derivative, function, L);
+        Solver *solver = new Solver(*nowy, derivative, function, L);
 
         solver->runAlgorithm(processor_name, world_rank, world_size);
     }
-    else if (world_rank == 1){
-        Interval *nowy = new Interval(middlePoint, intervalB, derivative, function, L);
-        Solver *solver = new Solver(*nowy, derivative, function,L);
+    else if (world_rank == 1) {
+        Interval *nowy = new Interval(intervalA + step, intervalA + 2*step, derivative, function, L);
+        Solver *solver = new Solver(*nowy, derivative, function, L);
 
         solver->runAlgorithm(processor_name, world_rank, world_size);
     }
+    else if (world_rank == 2) {
+        Interval *nowy = new Interval(intervalA + 2*step, intervalA + 3*step, derivative, function, L);
+        Solver *solver = new Solver(*nowy, derivative, function, L);
 
+        solver->runAlgorithm(processor_name, world_rank, world_size);
+    }
+    else if (world_rank == 3) {
+        Interval *nowy = new Interval(intervalA + 3*step, intervalB, derivative, function, L);
+        Solver *solver = new Solver(*nowy, derivative, function, L);
+
+        solver->runAlgorithm(processor_name, world_rank, world_size);
+    }
 
     int duration = clock() - startTime;
     std::cout << "---------------------------" << std::endl;
