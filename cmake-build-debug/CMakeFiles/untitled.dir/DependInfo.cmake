@@ -4,15 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/kamil/CLionProjects/PORR-MT/main.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.o"
-  "/home/kamil/CLionProjects/PORR-MT/src/Interval.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/Interval.cpp.o"
-  "/home/kamil/CLionProjects/PORR-MT/src/Solver.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/Solver.cpp.o"
-  "/home/kamil/CLionProjects/PORR-MT/src/derivative.cpp" "/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/derivative.cpp.o"
+  "/home/alexandra/ClionProjects/PORR-MT/main.cpp" "/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.o"
+  "/home/alexandra/ClionProjects/PORR-MT/src/Interval.cpp" "/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/Interval.cpp.o"
+  "/home/alexandra/ClionProjects/PORR-MT/src/Solver.cpp" "/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/Solver.cpp.o"
+  "/home/alexandra/ClionProjects/PORR-MT/src/derivative.cpp" "/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir/src/derivative.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent"
+  "/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent/include"
+  "/usr/lib/openmpi/include"
+  "/usr/lib/openmpi/include/openmpi"
+  "/usr/include/mpi"
   )
 
 # Targets to which this target links.

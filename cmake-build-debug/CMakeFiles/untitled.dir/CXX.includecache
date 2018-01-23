@@ -6,23 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/home/kamil/CLionProjects/PORR-MT/main.cpp
+/home/alexandra/ClionProjects/PORR-MT/main.cpp
 boost/multiprecision/cpp_dec_float.hpp
 -
 boost/math/constants/constants.hpp
 -
 src/Interval.h
-/home/kamil/CLionProjects/PORR-MT/src/Interval.h
+/home/alexandra/ClionProjects/PORR-MT/src/Interval.h
 src/Solver.h
-/home/kamil/CLionProjects/PORR-MT/src/Solver.h
+/home/alexandra/ClionProjects/PORR-MT/src/Solver.h
+mpi/mpi.h
+-
 
-/home/kamil/CLionProjects/PORR-MT/src/Interval.cpp
+/home/alexandra/ClionProjects/PORR-MT/src/Interval.cpp
 Interval.h
-/home/kamil/CLionProjects/PORR-MT/src/Interval.h
+/home/alexandra/ClionProjects/PORR-MT/src/Interval.h
 
-/home/kamil/CLionProjects/PORR-MT/src/Interval.h
+/home/alexandra/ClionProjects/PORR-MT/src/Interval.h
 derivative.h
-/home/kamil/CLionProjects/PORR-MT/src/derivative.h
+/home/alexandra/ClionProjects/PORR-MT/src/derivative.h
 iostream
 -
 tuple
@@ -30,11 +32,11 @@ tuple
 algorithm
 -
 
-/home/kamil/CLionProjects/PORR-MT/src/Solver.cpp
+/home/alexandra/ClionProjects/PORR-MT/src/Solver.cpp
 Solver.h
-/home/kamil/CLionProjects/PORR-MT/src/Solver.h
+/home/alexandra/ClionProjects/PORR-MT/src/Solver.h
 
-/home/kamil/CLionProjects/PORR-MT/src/Solver.h
+/home/alexandra/ClionProjects/PORR-MT/src/Solver.h
 iostream
 -
 cstddef
@@ -48,7 +50,7 @@ list
 float.h
 -
 Interval.h
-/home/kamil/CLionProjects/PORR-MT/src/Interval.h
+/home/alexandra/ClionProjects/PORR-MT/src/Interval.h
 tuple
 -
 atomic
@@ -58,9 +60,9 @@ mutex
 thread
 -
 
-/home/kamil/CLionProjects/PORR-MT/src/derivative.cpp
+/home/alexandra/ClionProjects/PORR-MT/src/derivative.cpp
 boost/multiprecision/cpp_dec_float.hpp
 -
 
-/home/kamil/CLionProjects/PORR-MT/src/derivative.h
+/home/alexandra/ClionProjects/PORR-MT/src/derivative.h
 

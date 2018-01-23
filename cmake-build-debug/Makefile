@@ -39,38 +39,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/kamil/Pobrane/clion-2017.2.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/alexandra/clion-2017.2.3/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/kamil/Pobrane/clion-2017.2.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/alexandra/clion-2017.2.3/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kamil/CLionProjects/PORR-MT
+CMAKE_SOURCE_DIR = /home/alexandra/ClionProjects/PORR-MT
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kamil/CLionProjects/PORR-MT/cmake-build-debug
+CMAKE_BINARY_DIR = /home/alexandra/ClionProjects/PORR-MT/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/kamil/Pobrane/clion-2017.2.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/kamil/Pobrane/clion-2017.2.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/alexandra/clion-2017.2.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,11 +67,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/alexandra/clion-2017.2.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles /home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles /home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,6 +123,19 @@ untitled/fast:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
 .PHONY : untitled/fast
 
+#=============================================================================
+# Target rules for targets named mpiMain
+
+# Build rule for target.
+mpiMain: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mpiMain
+.PHONY : mpiMain
+
+# fast build rule for target.
+mpiMain/fast:
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/build
+.PHONY : mpiMain/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -130,6 +143,7 @@ main.o: main.cpp.o
 # target to build an object file
 main.cpp.o:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -139,6 +153,7 @@ main.i: main.cpp.i
 # target to preprocess a source file
 main.cpp.i:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -148,6 +163,7 @@ main.s: main.cpp.s
 # target to generate assembly for a file
 main.cpp.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/Interval.o: src/Interval.cpp.o
@@ -157,6 +173,7 @@ src/Interval.o: src/Interval.cpp.o
 # target to build an object file
 src/Interval.cpp.o:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Interval.cpp.o
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/Interval.cpp.o
 .PHONY : src/Interval.cpp.o
 
 src/Interval.i: src/Interval.cpp.i
@@ -166,6 +183,7 @@ src/Interval.i: src/Interval.cpp.i
 # target to preprocess a source file
 src/Interval.cpp.i:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Interval.cpp.i
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/Interval.cpp.i
 .PHONY : src/Interval.cpp.i
 
 src/Interval.s: src/Interval.cpp.s
@@ -175,6 +193,7 @@ src/Interval.s: src/Interval.cpp.s
 # target to generate assembly for a file
 src/Interval.cpp.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Interval.cpp.s
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/Interval.cpp.s
 .PHONY : src/Interval.cpp.s
 
 src/Solver.o: src/Solver.cpp.o
@@ -184,6 +203,7 @@ src/Solver.o: src/Solver.cpp.o
 # target to build an object file
 src/Solver.cpp.o:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Solver.cpp.o
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/Solver.cpp.o
 .PHONY : src/Solver.cpp.o
 
 src/Solver.i: src/Solver.cpp.i
@@ -193,6 +213,7 @@ src/Solver.i: src/Solver.cpp.i
 # target to preprocess a source file
 src/Solver.cpp.i:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Solver.cpp.i
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/Solver.cpp.i
 .PHONY : src/Solver.cpp.i
 
 src/Solver.s: src/Solver.cpp.s
@@ -202,6 +223,7 @@ src/Solver.s: src/Solver.cpp.s
 # target to generate assembly for a file
 src/Solver.cpp.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Solver.cpp.s
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/Solver.cpp.s
 .PHONY : src/Solver.cpp.s
 
 src/derivative.o: src/derivative.cpp.o
@@ -211,6 +233,7 @@ src/derivative.o: src/derivative.cpp.o
 # target to build an object file
 src/derivative.cpp.o:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/derivative.cpp.o
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/derivative.cpp.o
 .PHONY : src/derivative.cpp.o
 
 src/derivative.i: src/derivative.cpp.i
@@ -220,6 +243,7 @@ src/derivative.i: src/derivative.cpp.i
 # target to preprocess a source file
 src/derivative.cpp.i:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/derivative.cpp.i
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/derivative.cpp.i
 .PHONY : src/derivative.cpp.i
 
 src/derivative.s: src/derivative.cpp.s
@@ -229,6 +253,7 @@ src/derivative.s: src/derivative.cpp.s
 # target to generate assembly for a file
 src/derivative.cpp.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/derivative.cpp.s
+	$(MAKE) -f CMakeFiles/mpiMain.dir/build.make CMakeFiles/mpiMain.dir/src/derivative.cpp.s
 .PHONY : src/derivative.cpp.s
 
 # Help Target
@@ -237,9 +262,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... untitled"
+	@echo "... rebuild_cache"
+	@echo "... mpiMain"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

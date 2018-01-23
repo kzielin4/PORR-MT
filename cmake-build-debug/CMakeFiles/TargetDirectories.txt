@@ -1,3 +1,4 @@
-/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/kamil/CLionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir
+/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/untitled.dir
+/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/alexandra/ClionProjects/PORR-MT/cmake-build-debug/CMakeFiles/mpiMain.dir
